@@ -1,0 +1,33 @@
+# Mencegah user melihat isi direktori
+Options -Indexes
+
+# Mengaktifkan Mesin Rewrite URL
+RewriteEngine On
+
+# Mengatur base directory untuk rewrite rules.
+# Jika proyek Anda ada di subfolder, ubah '/' menjadi '/nama_folder_proyek/'.
+RewriteBase /
+
+# Sembunyikan ekstensi .php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+)$ $1.php [L,QSA]
+
+# Aturan URL Cantik
+# =================
+
+# 1. Mengarahkan /admin ke /admin/index.php
+RewriteRule ^admin/?$ admin/index.php [NC,L]
+
+# 2. Mengarahkan /tes/{token} ke /user/mulai_tes.php?token={token}
+RewriteRule ^tes/([a-zA-Z0-9_,-]+)/?$ user/mulai_tes.php?token=$1 [NC,L]
+
+# 3. Mengarahkan /ujian/{token} ke /user/ujian.php?token={token}
+RewriteRule ^ujian/([a-zA-Z0-9_,-]+)/?$ user/ujian.php?token=$1 [NC,L]
+
+# 4. Mengarahkan /hasil/{token} ke /user/hasil.php?token={token}
+RewriteRule ^hasil/([a-zA-Z0-9_,-]+)/?$ user/hasil.php?token=$1 [NC,L]
+
+# 5. Mengarahkan /hasil/id/{id} ke /user/hasil.php?id={id} (untuk admin)
+RewriteRule ^hasil/id/(\d+)/?$ user/hasil.php?id=$1 [NC,L]
