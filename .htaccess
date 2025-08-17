@@ -4,9 +4,12 @@ Options -Indexes
 # Mengaktifkan Mesin Rewrite URL
 RewriteEngine On
 
-# Mengatur base directory untuk rewrite rules.
-# Jika proyek Anda ada di subfolder, ubah '/' menjadi '/nama_folder_proyek/'.
-RewriteBase /
+# ==============================================================================
+# PENTING: Mengatur base directory untuk rewrite rules.
+# Path ini HARUS cocok dengan lokasi folder proyek Anda di server.
+# Contoh: Jika URL Anda http://localhost/folder_proyek/, maka atur ke /folder_proyek/
+# ==============================================================================
+RewriteBase /habidhazbullah-papi-kostick-website-final/
 
 # Sembunyikan ekstensi .php
 RewriteCond %{REQUEST_FILENAME} !-d
